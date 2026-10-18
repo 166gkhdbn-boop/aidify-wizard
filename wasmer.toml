@@ -1,0 +1,19 @@
+[package]
+name = "166gkhdbn-boop/aidify-wizard"
+version = "0.1.1"
+description = "Standalone deploy wizard for the REN Gateway panel (WinterJS on Wasmer Edge)"
+license = "MIT"
+
+[dependencies]
+"wasmer/winterjs" = "*"
+
+[fs]
+"/app" = "./app"
+
+[[command]]
+name = "script"
+module = "wasmer/winterjs:winterjs"
+runner = "https://webc.org/runner/wasi"
+
+[command.annotations.wasi]
+main-args = ["serve", "/app/app.js", "--script"]
